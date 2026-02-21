@@ -23,6 +23,32 @@ config.ini
 # Data files (don't commit scraped data)
 data/*.csv
 data/*.json
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+*.egg-info/
+.pytest_cache/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.code-workspace
+
+# Environment variables
+.env
+.env.local
+config.ini
+
+# Data files (don't commit scraped data)
+data/*.csv
+data/*.json
 *.db
 
 # OS
