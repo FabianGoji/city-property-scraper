@@ -71,7 +71,7 @@ class BaseScraper:
             self.logger.error(f"Error fetching {url}: {e}")
             return None
     
-    def rate_limit(self, seconds: int = 1):
+    def rate_limit(self, seconds: int = 5):
         """
         Sleep for specified seconds to avoid overloading servers.
         
