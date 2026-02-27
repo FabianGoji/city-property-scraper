@@ -30,7 +30,12 @@ def import_properties_csv(csv_path, db):
             db.save_property(property_data)
             print(f"✓ Imported {property_data['property_id']}")
         except Exception as e:
-            print(f"✗ Error importing {property_data['property_id']}: {e}")
+            if "UNIQUE constraint" in str(e):
+                print(f"⊘ Skipped {property_data['property_id']} (already exists)")
+            else:
+                print(f"✗ Error importing {property_data['property_id']}: {e}")
+            # Rollback and continue
+            db.session.rollback()
 
 def import_environment_csv(csv_path, db):
     """Import environment data from CSV to database."""
@@ -62,6 +67,7 @@ def import_environment_csv(csv_path, db):
         print(f"✓ Imported environment data for {env_data['city']}, {env_data['state']}")
     except Exception as e:
         print(f"✗ Error importing environment data: {e}")
+        db.session.rollback()
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
