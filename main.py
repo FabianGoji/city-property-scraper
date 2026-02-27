@@ -63,6 +63,9 @@ def main():
     env_file = data_manager.save_environment_data(env_data, args.city, args.state)
     prop_file = data_manager.save_property_data(prop_data, args.city, args.state)
     combined_file = data_manager.save_combined_data(env_data, prop_data, args.city, args.state)
+    # Save to database
+    data_manager.save_properties_to_db(prop_data)
+    data_manager.save_environment_to_db(env_data)
     
     # Summary
     logger.info("\n" + "="*60)
